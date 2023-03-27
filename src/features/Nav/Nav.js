@@ -26,6 +26,9 @@ export class Nav extends React.Component {
               <li className="Nav__item">
                 <Link className="Nav__link" to="/filter/top">Top</Link>
               </li>
+              <li className="Nav__item">
+                <Link className="Nav__link" to="/subreddits">View All Subreddits</Link>
+              </li>
             </ul>
           </div>
         </div>

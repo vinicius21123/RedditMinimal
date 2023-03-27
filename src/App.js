@@ -3,12 +3,11 @@ import { Counter } from './features/counter/Counter';
 import './App.css';
 import { useDispatch ,useSelector} from 'react-redux';
 import {Nav} from './features/Nav/Nav'
-import {Post} from './features/post/post'
+import {Subreddit} from './features/Subreddit/subreddit'
 import { Route, Link, BrowserRouter as Router, Routes} from 'react-router-dom';
 import { useEffect ,useState} from 'react';
-import { addPost } from './features/post/postSlice';
+import { addSubreddit } from './features/Subreddit/subredditSlice';
 import { getSubreddits } from './features/post/postAPI'; 
-import { selectPost } from './features/post/postSlice';
 function App () {
   //const activeSub = useSelector(state => state.subreddits.activeSubreddit);
 
@@ -30,7 +29,7 @@ function App () {
   },[]);
 
   if(loading===false){
-    dispatch(addPost(data))
+    dispatch(addSubreddit(data))
   }
   return (
     
@@ -39,7 +38,7 @@ function App () {
 
           <Nav />
           <Routes>
-              <Route path='/'element={<Post loading={loading} data={data}/>}/>
+              <Route path='/subreddits'element={<Subreddit loading={loading} data={data}/>}/>
                 
 
           </Routes>

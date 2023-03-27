@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
-import { selectPost } from './postSlice';
 import { useSelector } from 'react-redux';
 import { store } from '../../app/store';
-export  function Post(props){
+export  function Subreddit(props){
     let loading = props.loading;
 
    // let  {postState} = props.postsObj;
