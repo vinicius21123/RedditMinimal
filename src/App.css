@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+}
+
+.Nav__item-wrapper{
+  list-style: none;
+
+}
+.Nav__item{
+  display:inline;
+  padding: 30px;
+}
+.Nav__item Link{
+  text-decoration: none;
+
+}
+.postContainer{
+  position: relative;
+  background-color: white;
+  text-align: center;
+  width: 100%;
+  height: 500px;
+  padding: 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.Nav__container{
+
+  background-color: white;
+  position:relative;
+
+
+
+}
+.subredditCard{
+  background-color: lightskyblue;
+  margin: 20px;
+  width: 600px;
+  height: 700px;
+}
+.subredditCard img{
+  height: 300px;
+  width: 100%;
+}
+
