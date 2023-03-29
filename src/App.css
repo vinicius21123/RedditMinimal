@@ -1,5 +1,9 @@
+html{
+  background-color: gray;
+}
 .App {
   text-align: center;
+  
 }
 
 .Nav__item-wrapper{
@@ -7,40 +11,21 @@
 
 }
 .Nav__item{
-  display:inline;
+  height: 88px;
+  display:flex;
   padding: 30px;
 }
 .Nav__item Link{
   text-decoration: none;
 
 }
-.subContainer{
-  display: inline-flex;
-  flex-wrap: wrap;
-}
+
 
 .Nav__container{
 
-  background-color: white;
+  background-color: lightcyan;
   position:relative;
-
-
-
-}
-.subredditCard{
-  background-color: lightskyblue;
-  margin: 20px;
-  width: 600px;
-  height: 100%;
-}
-.subredditCard .iconSub{
-  border-radius: 50%;
   float: left;
-  height: 10%;
-  width: 10%;
-}
-.subredditCard .bannerSub{
-  width: 100%;
-  height: 30%;
-}
 
+
+}

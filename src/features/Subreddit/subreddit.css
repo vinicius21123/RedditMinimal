@@ -1,0 +1,29 @@
+.subContainer{
+    float: center;
+    width: 70%;
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+.subredditCard{
+    text-align: center;
+    background-color: lightskyblue;
+    margin: 20px;
+    width: 500px;
+    height: 100%;
+
+  }
+.subredditCard p {
+    font-size: .7rem;
+}
+  .subredditCard .iconSub{
+    border-radius: 50%;
+    float: left;
+    height: 10%;
+    width: 10%;
+  }
+  .subredditCard .bannerSub{
+    width: 100%;
+    height: 30%;
+  }
+
+  
