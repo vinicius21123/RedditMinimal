@@ -10,7 +10,7 @@ import { Route, Link, BrowserRouter as Router, Routes} from 'react-router-dom';
 import { useEffect ,useState} from 'react';
 import { addSubreddit } from './features/Subreddit/subredditSlice';
 import { addPost } from './features/post/postSlice';
-
+import { IndividualPost } from './features/individualPost/individualPost';
 import { getSubreddits } from './features/post/postAPI'; 
 import { getSubredditPosts } from './features/post/postAPI'; 
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +21,8 @@ function App () {
   const [loading, setLoading] = useState(true);
   const [dataPost, setDataPost] = useState([]);
   const [loadingPost, setLoadingPost] = useState(true);
+  const [dataIndPost, setDataIndPost] = useState([]);
+  const [loadingIndPost, setLoadingIndPost] = useState(true);
   const [currentSub,setCurrentSub] = useState('');
   const dispatch = useDispatch();
   let cur = ''
@@ -39,41 +41,19 @@ function App () {
     })
   }
   
-  const fetchInfoPost = (path)=>{
-    return getSubredditPosts(path)
-    .then(response => {
-      
-      setLoadingPost(false);
-      setDataPost(response);
-
-
-    })
-  }
   
   useEffect(() => {
     fetchInfo();
-    fetchInfoPost('/r'+window.location.pathname.substr(10))
-    
   },[window.location.pathname]);
 
   if(loading===false){
     dispatch(addSubreddit(data))
 
+  }
 
-  }
-  if(loadingPost===false){
-    
-    dispatch(addPost(dataPost))
-  }
   function clickHandler(e){
-      
-       
-      // // //cur2 = cur
-      
-      window.location.pathname = '/subreddit/'+e.target.id;
-      
-
-
+    
+      window.location.pathname = '/subreddit/'+ e.target.id;
   }
   
 
@@ -84,10 +64,11 @@ function App () {
 
           <Nav />
           <SideSub loading={loading} data={data} clickHandler={clickHandler}/>
-          <Routes>
-
+          <Routes> 
+            {/* window.location.pathname.substr(11) */}
               <Route path={'/subreddit/'}element={<Subreddit loading={loading} data={data} clickHandler={clickHandler}/>}/>
-              <Route path={'/subreddit/'+window.location.pathname.substr(11)}element={<Post loading={loadingPost} data={dataPost}/>}/> 
+              <Route path={'/subreddit/:subredditId'}element={<Post />}/>
+              <Route path={'/subreddit/:subredditId/:commentId'}element={<IndividualPost />}/>
 
 
           </Routes>

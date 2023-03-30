@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import './individualPost.css';
+import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
-import { selectPost } from './postSlice';
 import { useSelector } from 'react-redux';
 import { store } from '../../app/store';
-import './post.css'
+import '../post/post.css'
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getSubredditPosts } from './postAPI';
-export  function Post(){
-    const [postContent, setPostContent] = useState({});
+import { getSingleSubredditPosts } from '../post/postAPI';
+export  function IndividualPost(){
+    let params = useParams();
+
     const [loading, setLoading] = useState(true);
-    const params = useParams();
+    const [postContent, setPostContent] = useState({});
     useEffect(() => {
-        getSubredditPosts('r/'+params.subredditId).then(results=>{
+        getSingleSubredditPosts('r/'+ params.subredditId,params.commentId).then(results=>{
             setPostContent(results);
             setLoading(false);
         })
         
-    },[params.subredditId])
+    },[params])
     const roundTime = t => {
         var unixTimestamp = t;
         var data = new Date(unixTimestamp * 1000);
@@ -31,31 +33,25 @@ export  function Post(){
     }
 
     function loadData(){
-        let arr =[]
-        for(let i =0;i<postContent.length;i++){
-            arr.push(postContent[i])
-            
-            
-        }
-        //window.location.href = `/subreddit/${obj.subreddit_name_prefixed.substr(2)}/${obj.id}}`
-        return arr.map(obj=>{
-             let id = obj.subreddit_name_prefixed.substr(2) + '/' + obj.id
+        
+        let obj = postContent;
             return (
-                <div key={obj.display_name} className='postCard' id={id} onClick={() => window.location.href = `/subreddit/${obj.subreddit_name_prefixed.substr(2)}/${obj.id}` }>
-                    <div id={id} className='postInfoTop'>
+                <div key={obj.display_name} className='postCard' id={obj.id}>
+                    <div className='postInfoTop'>
                         
-                        <img id={id} className='iconSub'src={obj.thumbnail ||
+                        <img id={obj.id} className='iconSub'src={obj.thumbnail ||
                     `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`} onError={(e) => e.target.src = 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg'} />
-                        <h3 id={id}>{obj.subreddit_name_prefixed}</h3>
-                        <p id={id}>Posted by: u/{obj.author} {roundTime(obj.created_utc)} ago</p>
+                        <h3>{obj.subreddit_name_prefixed}</h3>
+                        <p>Posted by: u/{obj.author} {roundTime(obj.created_utc)} ago</p>
                     </div>
-                    <div id={id} class='textPost'>
+                    <div class='textPost'>
 
                     
-                        <h4 id={id}>{obj.title}</h4>
-                        <p id={id}>{obj.selftext}</p>
+                        <h4 id={obj.id}>{obj.title}</h4>
+                        <p>{obj.selftext}</p>
                      </div>
-                    {obj.post_hint==='image'?<img id={id} className='postImg' src={obj.url_overridden_by_dest||obj.url}/>:<div/>}
+                    {obj.post_hint==='image'?<img id={obj.id} className='postImg' src={obj.url_overridden_by_dest||obj.url}/>:<div/>}
+                    
                     
                     <a>Comments</a>
                     <a>Details</a>
@@ -63,21 +59,19 @@ export  function Post(){
                     <p>{obj.ups}</p>
                 </div>
             )
-        })
+        
     }
     function loadingData(){
-            let arr =[]
-            for(let i =0;i<10;i++){
-                arr.push(i)
-            }
+            let arr =['1']
+            
             
             return arr.map(obj=>{
                 
                 return (
-                    <div key={obj} className='postCard'>
+                    <div key={obj[0]} className='postCard' id={obj.display_name}>
                         <div className='postInfoTop'>
                             <img className='iconSub'src={`https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`}/>
-                            <h3>Loading...</h3>
+                            <h3>mothafuckaa...</h3>
                             <p>Loading...</p>
                         </div>
                         <div className='textPost'>

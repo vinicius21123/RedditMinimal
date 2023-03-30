@@ -7,14 +7,7 @@ import './subreddit.css'
 export  function Subreddit(props){
     let loading = props.loading;
     let data = props.data
-    let viewAll = false;
 
-
-   // let  {postState} = props.postsObj;
-   function toggleView(){
-        viewAll = true;
-   }
-   
     function loadData(){
         
         let arr =[]
@@ -32,7 +25,7 @@ export  function Subreddit(props){
                     <img id={obj.display_name} className='bannerSub'src={obj.banner_img || 'https://b.thumbs.redditmedia.com/PXt8GnqdYu-9lgzb3iesJBLN21bXExRV1A45zdw4sYE.png'}/>
                     <button id={obj.display_name}>{obj.subscribers} subscribers</button>
                     <h2 id={obj.display_name}>{obj.title}</h2>
-                    <p id={obj.display_name}>{obj.public_description || obj.description}</p>
+                    <p1 id={obj.display_name}>{obj.public_description || obj.description}</p1>
                     <button id={obj.display_name} type="button">{'<< '}Browse Subreddit</button>
                     
                 </div>

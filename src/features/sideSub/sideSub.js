@@ -48,7 +48,7 @@ export  function SideSub(props){
             return arr.map(obj=>{
                 
                 return (
-                    <div className="sideSubContainer">
+                    <div key={obj} className="sideSubContainer">
                         <div key={obj.display_name} className='sideSubredditCard'>
                         <Link  to={'/subreddit/'+obj.title}>
                             <img  className='iconSideSub'src={
