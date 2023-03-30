@@ -7,6 +7,7 @@ import '../post/post.css'
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSingleSubredditPosts } from '../post/postAPI';
+import { GetPosts } from '../postComments/postComments';
 export  function IndividualPost(){
     let params = useParams();
 
@@ -17,7 +18,7 @@ export  function IndividualPost(){
             setPostContent(results);
             setLoading(false);
         })
-        
+
     },[params])
     const roundTime = t => {
         var unixTimestamp = t;
@@ -57,6 +58,7 @@ export  function IndividualPost(){
                     <a>Details</a>
                     <a>Share</a>
                     <p>{obj.ups}</p>
+                    <GetPosts permalink={obj.permalink}/>
                 </div>
             )
         
@@ -71,7 +73,7 @@ export  function IndividualPost(){
                     <div key={obj[0]} className='postCard' id={obj.display_name}>
                         <div className='postInfoTop'>
                             <img className='iconSub'src={`https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`}/>
-                            <h3>mothafuckaa...</h3>
+                            <h3>Loading...</h3>
                             <p>Loading...</p>
                         </div>
                         <div className='textPost'>

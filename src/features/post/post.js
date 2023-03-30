@@ -4,16 +4,20 @@ import { selectPost } from './postSlice';
 import { useSelector } from 'react-redux';
 import { store } from '../../app/store';
 import './post.css'
+import { useDispatch } from 'react-redux';
+import { addPost } from './postSlice';
 import { useParams } from 'react-router-dom';
 import { getSubredditPosts } from './postAPI';
 export  function Post(){
     const [postContent, setPostContent] = useState({});
     const [loading, setLoading] = useState(true);
     const params = useParams();
+    let dispatch = useDispatch()
     useEffect(() => {
         getSubredditPosts('r/'+params.subredditId).then(results=>{
             setPostContent(results);
             setLoading(false);
+            dispatch(addPost(results))
         })
         
     },[params.subredditId])
@@ -37,7 +41,6 @@ export  function Post(){
             
             
         }
-        //window.location.href = `/subreddit/${obj.subreddit_name_prefixed.substr(2)}/${obj.id}}`
         return arr.map(obj=>{
              let id = obj.subreddit_name_prefixed.substr(2) + '/' + obj.id
             return (
