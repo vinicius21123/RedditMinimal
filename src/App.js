@@ -15,6 +15,11 @@ import { getSubreddits } from './features/post/postAPI';
 import { getSubredditPosts } from './features/post/postAPI'; 
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { SearchBar } from './features/searchBar/searchBar';
+import { trackPromise } from 'react-promise-tracker';
+import { fetchSearchResults } from './features/post/postAPI';
+import { setSearchTerm } from './features/searchBar/seachSlice';
+
 function App () {
   //const activeSub = useSelector(state => state.subreddits.activeSubreddit);
   let params = useParams()
@@ -56,13 +61,18 @@ function App () {
     
       window.location.pathname = '/subreddit/'+ e.target.id;
   }
-  
+  const search = (term) => {
+   
+    fetchSearchResults(term).then(results => {
+      dispatch(setSearchTerm(results));
+    })
+  };
 
   return (
     
       <div className="App">
         <header className="App-header">
-
+          <SearchBar onSearch={search} />
           <Nav />
           <SideSub loading={loading} data={data} clickHandler={clickHandler}/>
           <Routes> 

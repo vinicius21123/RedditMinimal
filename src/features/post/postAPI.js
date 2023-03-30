@@ -27,3 +27,19 @@ export const getSingleSubredditPosts = async (subreddit,id) => {
 
   return json[0].data.children[0].data;;
 };
+
+
+export const fetchSearchResults = (term) =>{
+  return fetch(`${API_ROOT}/search.json?q=${term}`)
+      .then(response => {
+          if (response.ok) {
+              return response.json();
+          }
+      }).then(jsonResponse => {
+          if (!jsonResponse) {
+              return [];
+          }
+          console.log(jsonResponse.data.children);
+          return jsonResponse.data.children;
+      })
+};

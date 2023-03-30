@@ -53,7 +53,7 @@ export  function Post(){
                             
                             <img id={id} className='iconSub'src={obj.thumbnail ||
                         `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`} onError={(e) => e.target.src = 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg'} />
-                            <h3 id={id}>{obj.subreddit_name_prefixed}</h3>
+                            <h3 id={id}><a href={`/subreddit/${obj.subreddit_name_prefixed.substr(2)}`}>{obj.subreddit_name_prefixed}</a></h3>
                             <p id={id}>Posted by: u/{obj.author} {roundTime(obj.created_utc)} ago</p>
                         </div>
                         <div id={id} class='textPost'>
