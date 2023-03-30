@@ -13,8 +13,10 @@ export  function Post(){
     const [loading, setLoading] = useState(true);
     const params = useParams();
     let dispatch = useDispatch()
+    
+    let path = params.subredditId ===undefined && params.filterName===undefined?'':params.subredditId?'r/'+params.subredditId:params.filterName
     useEffect(() => {
-        getSubredditPosts('r/'+params.subredditId).then(results=>{
+        getSubredditPosts(path).then(results=>{
             setPostContent(results);
             setLoading(false);
             dispatch(addPost(results))
@@ -41,31 +43,34 @@ export  function Post(){
             
             
         }
+        
         return arr.map(obj=>{
              let id = obj.subreddit_name_prefixed.substr(2) + '/' + obj.id
-            return (
-                <div key={obj.display_name} className='postCard' id={id} onClick={() => window.location.href = `/subreddit/${obj.subreddit_name_prefixed.substr(2)}/${obj.id}` }>
-                    <div id={id} className='postInfoTop'>
-                        
-                        <img id={id} className='iconSub'src={obj.thumbnail ||
-                    `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`} onError={(e) => e.target.src = 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg'} />
-                        <h3 id={id}>{obj.subreddit_name_prefixed}</h3>
-                        <p id={id}>Posted by: u/{obj.author} {roundTime(obj.created_utc)} ago</p>
-                    </div>
-                    <div id={id} class='textPost'>
+             if(!obj.over_18){
+                return (
+                    <div key={obj.display_name} className='postCard' id={id} onClick={() => window.location.href = `/subreddit/${obj.subreddit_name_prefixed.substr(2)}/${obj.id}` }>
+                        <div id={id} className='postInfoTop'>
+                            
+                            <img id={id} className='iconSub'src={obj.thumbnail ||
+                        `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`} onError={(e) => e.target.src = 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg'} />
+                            <h3 id={id}>{obj.subreddit_name_prefixed}</h3>
+                            <p id={id}>Posted by: u/{obj.author} {roundTime(obj.created_utc)} ago</p>
+                        </div>
+                        <div id={id} class='textPost'>
 
-                    
-                        <h4 id={id}>{obj.title}</h4>
-                        <p id={id}>{obj.selftext}</p>
-                     </div>
-                    {obj.post_hint==='image'?<img id={id} className='postImg' src={obj.url_overridden_by_dest||obj.url}/>:<div/>}
-                    
-                    <a>Comments</a>
-                    <a>Details</a>
-                    <a>Share</a>
-                    <p>{obj.ups}</p>
-                </div>
-            )
+                        
+                            <h4 id={id}>{obj.title}</h4>
+                            <p id={id}>{obj.selftext}</p>
+                        </div>
+                        {obj.post_hint==='image'?<img id={id} className='postImg' src={obj.url_overridden_by_dest||obj.url}/>:<div/>}
+                        
+                        <a>Comments</a>
+                        <a>Details</a>
+                        <a>Share</a>
+                        <p>{obj.ups}</p>
+                    </div>
+                )
+                            }
         })
     }
     function loadingData(){

@@ -14,9 +14,10 @@ import { IndividualPost } from './features/individualPost/individualPost';
 import { getSubreddits } from './features/post/postAPI'; 
 import { getSubredditPosts } from './features/post/postAPI'; 
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 function App () {
   //const activeSub = useSelector(state => state.subreddits.activeSubreddit);
-  
+  let params = useParams()
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dataPost, setDataPost] = useState([]);
@@ -69,6 +70,12 @@ function App () {
               <Route path={'/subreddit/'}element={<Subreddit loading={loading} data={data} clickHandler={clickHandler}/>}/>
               <Route path={'/subreddit/:subredditId'}element={<Post />}/>
               <Route path={'/subreddit/:subredditId/:commentId'}element={<IndividualPost />}/>
+              <Route path={'/filter/:filterName'}element={<Post />}/>
+              <Route path={'/'}element={<Post />}/>
+              {/* <Route path={'/filter/new'}element={<Post filter='/new'/>}/>
+              <Route path={'/filter/rising'}element={<Post filter='/rising'/>}/>
+              <Route path={'/filter/top'}element={<Post filter='/top'/>}/> */}
+
 
 
           </Routes>

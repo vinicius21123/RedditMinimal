@@ -36,31 +36,38 @@ export  function IndividualPost(){
     function loadData(){
         
         let obj = postContent;
+        if(!obj.over_18){
             return (
-                <div key={obj.display_name} className='postCard' id={obj.id}>
-                    <div className='postInfoTop'>
-                        
-                        <img id={obj.id} className='iconSub'src={obj.thumbnail ||
-                    `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`} onError={(e) => e.target.src = 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg'} />
-                        <h3>{obj.subreddit_name_prefixed}</h3>
-                        <p>Posted by: u/{obj.author} {roundTime(obj.created_utc)} ago</p>
-                    </div>
-                    <div class='textPost'>
+                <div>
+                    <div key={obj.display_name} className='postCard' id={obj.id}>
+                        <div className='postInfoTop'>
+                            
+                            <img id={obj.id} className='iconSub'src={obj.thumbnail ||
+                        `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`} onError={(e) => e.target.src = 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg'} />
+                            <h3>{obj.subreddit_name_prefixed}</h3>
+                            <p>Posted by: u/{obj.author} {roundTime(obj.created_utc)} ago</p>
+                        </div>
+                        <div class='textPost'>
 
-                    
-                        <h4 id={obj.id}>{obj.title}</h4>
-                        <p>{obj.selftext}</p>
-                     </div>
-                    {obj.post_hint==='image'?<img id={obj.id} className='postImg' src={obj.url_overridden_by_dest||obj.url}/>:<div/>}
-                    
-                    
-                    <a>Comments</a>
-                    <a>Details</a>
-                    <a>Share</a>
-                    <p>{obj.ups}</p>
+                        
+                            <h4 id={obj.id}>{obj.title}</h4>
+                            <p>{obj.selftext}</p>
+                        </div>
+                        {obj.post_hint==='image'?<img id={obj.id} className='postImg' src={obj.url_overridden_by_dest||obj.url}/>:<div/>}
+                        
+                        
+                        <a>Comments</a>
+                        <a>Details</a>
+                        <a>Share</a>
+                        <p>{obj.ups}</p>
+                        
+                    </div>
                     <GetPosts permalink={obj.permalink}/>
                 </div>
             )
+        }else{
+            return(<h1>Naughty Naughty</h1>)
+        }
         
     }
     function loadingData(){
