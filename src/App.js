@@ -71,24 +71,24 @@ function App () {
   return (
     
       <div className="App">
-        <header className="App-header">
+        <div className='SearchBarSec'> 
+          <a href="/"><img className='redditLogoSearch'src='https://download.logo.wine/logo/Reddit/Reddit-Logo.wine.png'/></a>
           <SearchBar onSearch={search} />
-          <Nav />
-          <SideSub loading={loading} data={data} clickHandler={clickHandler}/>
-          <Routes> 
-            {/* window.location.pathname.substr(11) */}
-              <Route path={'/subreddit/'}element={<Subreddit loading={loading} data={data} clickHandler={clickHandler}/>}/>
-              <Route path={'/subreddit/:subredditId'}element={<Post />}/>
-              <Route path={'/subreddit/:subredditId/:commentId'}element={<IndividualPost />}/>
-              <Route path={'/filter/:filterName'}element={<Post />}/>
-              <Route path={'/'}element={<Post />}/>
-              {/* <Route path={'/filter/new'}element={<Post filter='/new'/>}/>
-              <Route path={'/filter/rising'}element={<Post filter='/rising'/>}/>
-              <Route path={'/filter/top'}element={<Post filter='/top'/>}/> */}
-
-
-
-          </Routes>
+        </div>
+        <header className="App-header">
+           <div className='Side'>
+              <Nav />
+              <SideSub loading={loading} data={data} clickHandler={clickHandler}/>
+            </div>
+            <div className='containerForPosts'>
+            <Routes> 
+                <Route path={'/subreddit/'}element={<Subreddit loading={loading} data={data} clickHandler={clickHandler}/>}/>
+                <Route path={'/subreddit/:subredditId'}element={<Post />}/>
+                <Route path={'/subreddit/:subredditId/:commentId'}element={<IndividualPost />}/>
+                <Route path={'/filter/:filterName'}element={<Post />}/>
+                <Route path={'/'}element={<Post />}/>
+            </Routes>
+          </div>
         </header>
       </div>
         

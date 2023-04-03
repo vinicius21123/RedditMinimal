@@ -50,24 +50,26 @@ export  function Post(){
                 return (
                     <div key={obj.display_name} className='postCard' id={id} onClick={() => window.location.href = `/subreddit/${obj.subreddit_name_prefixed.substr(2)}/${obj.id}` }>
                         <div id={id} className='postInfoTop'>
-                            
+                        <div className='footerPost'>
                             <img id={id} className='iconSub'src={obj.thumbnail ||
                         `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`} onError={(e) => e.target.src = 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg'} />
                             <h3 id={id}><a href={`/subreddit/${obj.subreddit_name_prefixed.substr(2)}`}>{obj.subreddit_name_prefixed}</a></h3>
                             <p id={id}>Posted by: u/{obj.author} {roundTime(obj.created_utc)} ago</p>
                         </div>
-                        <div id={id} class='textPost'>
-
                         
-                            <h4 id={id}>{obj.title}</h4>
-                            <p id={id}>{obj.selftext}</p>
+                            <div id={id} class='textPost'>
+                                <h4 id={id}>{obj.title}</h4>
+                                <p id={id}>{obj.selftext}</p>
+                            </div>
+                        
+                            {obj.post_hint==='image'?<img id={id} className='postImg' src={obj.url_overridden_by_dest||obj.url}/>:<div/>}
+                        <br />
+                        
+                            <a>Comments</a>
+                            <a>Details</a>
+                            <a>Share</a>
+                            <a>{obj.ups}</a>
                         </div>
-                        {obj.post_hint==='image'?<img id={id} className='postImg' src={obj.url_overridden_by_dest||obj.url}/>:<div/>}
-                        
-                        <a>Comments</a>
-                        <a>Details</a>
-                        <a>Share</a>
-                        <p>{obj.ups}</p>
                     </div>
                 )
                             }

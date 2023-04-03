@@ -19,14 +19,18 @@ export  function Subreddit(props){
         return arr.map(obj=>{
             return (
                 <div key={obj.display_name} className='subredditCard' id={obj.display_name} onClick={props.clickHandler}>
-                    <img id={obj.display_name} className='iconSub'src={obj.icon_img ||
+                    <div className='topBit'>
+                        <img id={obj.display_name} className='iconSub'src={obj.icon_img ||
                 `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`}/>
-                    <p id={obj.display_name}>{obj.url}</p>
+                
+                    <p className="NameofReddit" id={obj.display_name}>{obj.url}</p>
+                    
                     <img id={obj.display_name} className='bannerSub'src={obj.banner_img || 'https://b.thumbs.redditmedia.com/PXt8GnqdYu-9lgzb3iesJBLN21bXExRV1A45zdw4sYE.png'}/>
-                    <button id={obj.display_name}>{obj.subscribers} subscribers</button>
+                    <p1 id={obj.display_name}>{obj.subscribers} subscribers</p1>
                     <h2 id={obj.display_name}>{obj.title}</h2>
-                    <p1 id={obj.display_name}>{obj.public_description || obj.description}</p1>
-                    <button id={obj.display_name} type="button">{'<< '}Browse Subreddit</button>
+                    <p1 id={obj.display_name}>{obj.public_description || obj.description}</p1><br/>
+                    <button className="button"id={obj.display_name} type="button">{'<< '}Browse Subreddit</button>
+                    </div>
                     
                 </div>
             )

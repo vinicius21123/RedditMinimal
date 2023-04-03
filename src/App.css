@@ -1,31 +1,77 @@
 html{
-  background-color: gray;
+  background-color:  #EEF0F2;
 }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #1C1C1C;    
+      }
 .App {
   text-align: center;
   
 }
 
 .Nav__item-wrapper{
+  margin-top: 40px;
   list-style: none;
-
+  padding: 0;
+  margin-left: 10px;
 }
 .Nav__item{
+  
   height: 88px;
   display:flex;
-  padding: 30px;
+  
 }
-.Nav__item Link{
-  text-decoration: none;
-
+.Nav__item img{
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
 }
 
-
-.Nav__container{
-
-  background-color: lightcyan;
-  position:relative;
+.Side{
+  margin-left: 20px;
+  width: 20%;
   float: left;
-
-
 }
+.containerForPosts{
+
+  float: right;
+  width: 75%;
+  margin-right: 20px;
+}
+
+.button{
+  margin-top: 20px;
+  height: 30px;
+  background-color: white;
+  color:  #0079D3;
+  font-weight: bold;
+  font-size: 1em;
+  border: #0079D3 solid 1.5px;
+  border-radius: 20px;
+}
+
+@media only screen and (max-width: 1196px) {
+
+  .sideSub{
+    display: none;
+  }
+  .postContainer{
+    width: 100%;
+    float:left;
+  }
+  .Nav__item{
+    display: inline-block;
+    padding: 10px;
+  }
+  .Side{
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
+

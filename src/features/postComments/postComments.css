@@ -1,0 +1,20 @@
+.postCommentCard{
+    background-color: white;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    margin: 5px;
+    border: solid black .5px;
+}
+.textCommentPost p{
+    margin-left: auto;
+}
+.textCommentPost span{
+    font-weight: bold;
+}
+.commentContainer{
+    float: center;
+    border: solid black 2px;
+    overflow: scroll;
+    height: 400px;
+}

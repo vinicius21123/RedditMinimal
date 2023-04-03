@@ -22,18 +22,20 @@ export  function SideSub(props){
             return arr.map(obj=>{
                 
                 return (
+                    <Link  to={'/subreddit/'+obj.title}>
                     <div className="sideSubContainer">
-                        <div key={obj.display_name} className='sideSubredditCard' id={obj.display_name} onClick={props.clickHandler}>
-                        <Link  to={'/subreddit/'+obj.title}>
+                        
+                            <div key={obj.display_name} className='sideSubredditCard' id={obj.display_name} onClick={props.clickHandler}>
+                        
                             <img id={obj.display_name} className='iconSideSub'src={obj.icon_img ||
                   `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`}/>
-                            <p id={obj.display_name}>{obj.url}  {obj.subscribers} Subscribers</p>
-                            
+                            <p>{obj.url}</p>                                
+
                         
-                            
-                        </Link>
-                        </div>
+                            </div>
+                        
                     </div>
+                    </Link>
                 )
             })
         
@@ -50,14 +52,14 @@ export  function SideSub(props){
                 return (
                     <div key={obj} className="sideSubContainer">
                         <div key={obj.display_name} className='sideSubredditCard'>
-                        <Link  to={'/subreddit/'+obj.title}>
+                        
                             <img  className='iconSideSub'src={
                   `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`}/>
                             <p>Loading....  </p>
                             
                         
                             
-                        </Link>
+                       
                         </div>
                     </div>
                 )
@@ -67,6 +69,7 @@ export  function SideSub(props){
     }
     return(
         <div className='sideSub'>
+            <h3>Featured Subreddits</h3>
             {loading?loadingData():loadData()}
             <Link className='view' to="/subreddit">View All Subreddits</Link>
         </div>

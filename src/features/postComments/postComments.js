@@ -5,6 +5,7 @@ import { getPostComments } from "../post/postAPI";
 import { addComment } from "./postCommentsSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import './postComments.css'
 export function GetPosts(props){
     let dispatch = useDispatch()
     let params = useParams()
@@ -40,22 +41,22 @@ export function GetPosts(props){
         return arr.map(obj=>{
 
             return (
-                <div key={obj.id} className='postCard' id={obj.id}>
+                <div key={obj.id} className='postCommentCard' id={obj.id}>
                     
-                    <div id={obj.id} class='textPost'>
-                        <h4 id={obj.id}>{obj.author}</h4><p>{roundTime(obj.created_utc)} ago</p>
+                    <div id={obj.id} class='textCommentPost'>
+                        <p id={obj.id}><span>{obj.author} </span>{roundTime(obj.created_utc)} ago</p><br/>
                         <p id={obj.id}>{obj.body}</p>
                      </div>
                     
-                    <p>{obj.ups}</p>
-                    <a>Share</a>
+                    <p>{obj.ups}  Share</p>
                     
                 </div>
             )
         })
     }
     
-    return loading?<h2>loading...</h2>:loadData()
+    return (
+        <div className="commentContainer">{loading?<h2>loading...</h2>:loadData()}</div>)
     
     
     

@@ -1,4 +1,3 @@
-import './individualPost.css';
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -41,7 +40,7 @@ export  function IndividualPost(){
                 <div>
                     <div key={obj.display_name} className='postCard' id={obj.id}>
                         <div className='postInfoTop'>
-                            
+                        <div className='footerPost'>
                             <img id={obj.id} className='iconSub'src={obj.thumbnail ||
                         `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg`} onError={(e) => e.target.src = 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg'} />
                             <h3><a href={`/subreddit/${obj.subreddit_name_prefixed.substr(2)}`}>{obj.subreddit_name_prefixed}</a></h3>
@@ -53,16 +52,20 @@ export  function IndividualPost(){
                             <h4 id={obj.id}>{obj.title}</h4>
                             <p>{obj.selftext}</p>
                         </div>
-                        {obj.post_hint==='image'?<img id={obj.id} className='postImg' src={obj.url_overridden_by_dest||obj.url}/>:<div/>}
+                        <br />
+                        {obj.post_hint==='image'?<img id='individualPostImg' className='postImg' src={obj.url_overridden_by_dest||obj.url}/>:<div/>}
                         
                         
                         <a>Comments</a>
                         <a>Details</a>
                         <a>Share</a>
                         <p>{obj.ups}</p>
-                        
                     </div>
+                    <br />
+                    <br />
                     <GetPosts permalink={obj.permalink}/>
+                    </div>
+                    
                 </div>
             )
         }else{
